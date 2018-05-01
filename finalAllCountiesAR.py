@@ -33,7 +33,7 @@ def website_returns(website_link):
     
     # Dict of all counties
     all_counties = {county_name.text: county_name for county_name in driver.find_elements_by_xpath
-                    ("//td[@id='td_legend_name']/a[@href='#']")}
+                    ("//td[@id='td_legend_name']/a[@href='#']")} # Specific to AR
                     
     ########## take 3 counties from all_counties to test ############
     county_name_list = [key for key in all_counties.keys()]
@@ -44,7 +44,7 @@ def website_returns(website_link):
            
     df = pd.DataFrame()
     
-    # Iterate through the dict of all counties
+    # Iterate through dict of all counties
     
     # for county in all_counties: # uncomment this to iterate through all counties
     for county in test_counties: # only testing 3 counties
@@ -52,10 +52,10 @@ def website_returns(website_link):
         # driver.execute_script("arguments[0].scrollIntoView();", all_counties[county])
         # all_counties[county].click()
         
-        ######## Using 3 sample counties ############
+        ############### Using 3 sample counties ####################
         driver.execute_script("arguments[0].scrollIntoView();", test_counties[county])
         test_counties[county].click()
-        ################################################################
+        ############################################################
         
         window_all_counties = driver.window_handles[0]
         window_county = driver.window_handles[1]
@@ -87,9 +87,7 @@ def link_to_xml(link):
     """a function that takes a link and returns an xml text file"""
     
     s = clarify.Jurisdiction(url=link, level='county')
-
     r = requests.get(s.report_url('xml'), stream=True)
-
     z = ZipFile(ioDuder(r.content))
 
     return z.open('detail.xml') # return an accessed detail.xml file
@@ -170,7 +168,7 @@ def returns_dict_to_df(returns_dict, county):
     
 if __name__ == '__main__':
     """ Test cases"""
-    # For AK
+    # For AR
     website_returns('http://results.enr.clarityelections.com/AR/63912/184685/Web01/en/summary.html#')
 
 
