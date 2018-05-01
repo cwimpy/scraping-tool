@@ -84,7 +84,7 @@ def website_returns(website_link):
 
 
 def link_to_xml(link):
-    """a function that takes a link and returns an xml text file"""
+    """a function that takes a link and returns an xml file"""
     
     s = clarify.Jurisdiction(url=link, level='county')
     r = requests.get(s.report_url('xml'), stream=True)
@@ -143,7 +143,7 @@ def xml_to_dict(parsed_xml):
 def returns_dict_to_df(returns_dict, county):
     """
     a function that takes in a dict of returns for a particular county
-    and return a dataframe
+    and returns a dataframe
     """
     
     df = pd.DataFrame()
