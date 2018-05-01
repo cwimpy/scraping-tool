@@ -1,5 +1,3 @@
-# Alex Vu
-# May 1st
 # Codes targeting AR, Final
 
 from pathlib import Path
